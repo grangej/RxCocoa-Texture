@@ -147,7 +147,7 @@ extension ObservableType {
                      setNeedsLayout node: ASDisplayNode? = nil) -> Disposable {
         weak var weakNode = node
         return self.map { $0 as E? }
-            .bind(to: relay, setNeedsLayout: weakNode)
+            .asBind(to: relay, setNeedsLayout: weakNode)
     }
     
     public func asBind(to relay: BehaviorRelay<E>,
@@ -175,7 +175,7 @@ extension ObservableType {
                      setNeedsLayout node: ASDisplayNode? = nil) -> Disposable {
         weak var weakNode = node
         return self.map { $0 as E? }
-            .bind(to: relay, setNeedsLayout: weakNode)
+            .asBind(to: relay, setNeedsLayout: weakNode)
     }
 }
 
