@@ -69,7 +69,7 @@ public protocol ASObserverType: ObserverType {
 }
 
 extension ObservableType {
-    public func bind<O>(to observer: O,
+    public func asBind<O>(to observer: O,
                         directlyBind: Bool = false,
                         setNeedsLayout node: ASDisplayNode? = nil)
         -> Disposable where O : ASObserverType, Self.E == O.E {
@@ -95,7 +95,7 @@ extension ObservableType {
             }
     }
     
-    public func bind<O: ASObserverType>(to observer: O,
+    public func asBind<O: ASObserverType>(to observer: O,
                                         directlyBind: Bool = false,
                                         setNeedsLayout node: ASDisplayNode? = nil)
         -> Disposable where O.E == E? {
@@ -122,7 +122,7 @@ extension ObservableType {
             }
     }
     
-    public func bind(to relay: PublishRelay<E>,
+    public func asBind(to relay: PublishRelay<E>,
                      setNeedsLayout node: ASDisplayNode?) -> Disposable {
         weak var weakNode = node
         return subscribe { e in
@@ -143,14 +143,14 @@ extension ObservableType {
         }
     }
     
-    public func bind(to relay: PublishRelay<E?>,
+    public func asBind(to relay: PublishRelay<E?>,
                      setNeedsLayout node: ASDisplayNode? = nil) -> Disposable {
         weak var weakNode = node
         return self.map { $0 as E? }
             .bind(to: relay, setNeedsLayout: weakNode)
     }
     
-    public func bind(to relay: BehaviorRelay<E>,
+    public func asBind(to relay: BehaviorRelay<E>,
                      setNeedsLayout node: ASDisplayNode? = nil) -> Disposable {
         weak var weakNode = node
         return subscribe { e in
@@ -171,7 +171,7 @@ extension ObservableType {
         }
     }
     
-    public func bind(to relay: BehaviorRelay<E?>,
+    public func asBind(to relay: BehaviorRelay<E?>,
                      setNeedsLayout node: ASDisplayNode? = nil) -> Disposable {
         weak var weakNode = node
         return self.map { $0 as E? }
