@@ -20,7 +20,7 @@ extension SharedSequenceConvertibleType where SharingStrategy == DriverSharingSt
         MainScheduler.ensureExecutingOnScheduler(errorMessage: errorMessage)
         return self.asSharedSequence()
             .asObservable()
-            .bind(to: observer,
+            .asBind(to: observer,
                   directlyBind: directlyBind,
                   setNeedsLayout: node)
     }
@@ -32,7 +32,7 @@ extension SharedSequenceConvertibleType where SharingStrategy == DriverSharingSt
         return self.asSharedSequence()
             .asObservable()
             .map { $0 as E? }
-            .bind(to: observer,
+            .asBind(to: observer,
                   directlyBind: directlyBind,
                   setNeedsLayout: node)
     }
